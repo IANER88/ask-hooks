@@ -28,7 +28,7 @@ export default function useWithResolvers<S>() {
     promise: promise.current.promise,
     resolve: (value: S) => {
       promise.current?.resolve?.(value);
-      promise.current = withResolvers();
+      promise.current = withResolvers<S>();
     },
     reject: promise?.current.reject,
   };
