@@ -1,5 +1,6 @@
-import useOnChangeValue from "./useOnChangeValue";
+import useWithResolvers from "./useWithResolvers";
+
 
 export {
-  useOnChangeValue,
+  useWithResolvers,
 }
