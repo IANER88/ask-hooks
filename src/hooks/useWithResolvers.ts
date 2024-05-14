@@ -2,9 +2,11 @@ import { useRef } from 'react';
 
 type Resolve<S> = ((value?: S) => void) | null;
 
+type Reject = () => void;
+
 const withResolvers = <S>() => {
   let resolve: Resolve<S> = () => void 0;
-  let reject;
+  let reject: Reject = () => void 0;
   const promise = new Promise((res, rej) => {
     resolve = res;
     reject = rej;
