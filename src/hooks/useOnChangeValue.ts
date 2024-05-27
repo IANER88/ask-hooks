@@ -1,9 +1,23 @@
 import { Dispatch, useCallback, useRef, useState } from 'react';
 
 type Method<S> = {
+  /**
+   * 修改值的方法
+   */
   onChange: (value?: S) => void;
+  /**
+   * 值
+   */
   value: S;
+  /**
+   * 获取最新值的方法同 useGetState
+   * @returns {S}
+   */
   _get_: () => S;
+  /**
+   * 重置值的方法同 useResetState
+   * @returns {void}
+   */
   _reset_: () => void;
 };
 
