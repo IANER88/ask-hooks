@@ -1,5 +1,11 @@
-import * as hooks from '../src/hooks';
+import {
+  useWithResolvers,
+  useOnChangeValue,
+  useFrequencyEffect,
+} from '../src/hooks';
 
 export {
-  hooks,
+  useWithResolvers,
+  useOnChangeValue,
+  useFrequencyEffect,
 }
