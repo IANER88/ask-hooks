@@ -1,6 +1,6 @@
 # ask_hooks
 业务类型 React Hooks 钩子
-## useChangeValue
+## useOnChangeValue
 - 同时兼备 value 和 onChange 函数的集合钩子
 - 可简化使用受控组件的步骤，少去 useState 和 onChange 函数定义的步骤
 
