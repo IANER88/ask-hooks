@@ -1,4 +1,4 @@
-import { Dispatch, useCallback, useRef, useState } from 'react';
+import { useCallback, useRef, useState } from 'react';
 
 type Method<S> = {
   /**
