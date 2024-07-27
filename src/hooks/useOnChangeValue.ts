@@ -41,11 +41,17 @@ export default function useOnChangeValue<S>(
   const _reset_ = useCallback(() => {
     setValue(initialState);
   }, []);
+
   const method = {
     value,
-    onChange: async (value: S) => {
+    onChange: (value: S) => {
       if (typeof transform === 'function') {
-        setValue(await transform(value));
+        const newly: any = transform(value);
+        if (
+          typeof newly?.then === 'function'
+        ) {
+          newly.then(setValue)
+        }
       } else {
         setValue(value);
       }
