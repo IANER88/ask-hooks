@@ -44,14 +44,10 @@ export default function useOnChangeValue<S>(
 
   const method = {
     value,
-    onChange: (value: S) => {
+    onChange: async (value: S) => {
       if (typeof transform === 'function') {
-        const newly: any = transform(value);
-        if (
-          typeof newly?.then === 'function'
-        ) {
-          newly.then(setValue)
-        }
+        const newly: any = await transform(value);
+        setValue(newly);
       } else {
         setValue(value);
       }
