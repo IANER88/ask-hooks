@@ -1,6 +1,6 @@
-import { useCallback, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 
-type Method<S> = {
+type UseOnChangeValueFn<S> = {
   /**
    * 修改值的方法
    */
@@ -9,20 +9,10 @@ type Method<S> = {
    * 值
    */
   value: S;
-  /**
-   * 获取最新值的方法同 useGetState
-   * @returns {S}
-   */
-  _get_: () => S;
-  /**
-   * 重置值的方法同 useResetState
-   * @returns {void}
-   */
-  _reset_: () => void;
-};
+}
 
 
-type UseOnChangeValue<S> = [Method<S>];
+type UseOnChangeValue<S> = [UseOnChangeValueFn<S>];
 
 type transformType<S> = ((value: S) => S) | ((value: S) => Promise<S>)
 /**
@@ -38,11 +28,8 @@ export default function useOnChangeValue<S>(
 ): UseOnChangeValue<S> {
   const state = useRef(initialState);
   const [value, setValue] = useState(initialState);
-  const _reset_ = useCallback(() => {
-    setValue(initialState);
-  }, []);
 
-  const method = {
+  return [{
     value,
     onChange: async (value: S) => {
       if (typeof transform === 'function') {
@@ -52,10 +39,6 @@ export default function useOnChangeValue<S>(
         setValue(value);
       }
       state.current = value;
-    },
-    _get_: () => state?.current,
-    _reset_,
-  };
-
-  return [method] as UseOnChangeValue<S>;
+    }
+  }] as UseOnChangeValue<S>;
 }
