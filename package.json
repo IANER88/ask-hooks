@@ -28,7 +28,6 @@
     "build:types": "ts-node buildTypes.ts"
   },
   "dependencies": {
-    "ahooks": "^3.8.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "vite-plugin-dts": "^4.0.0-beta.1"

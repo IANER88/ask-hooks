@@ -1,5 +1,4 @@
-import { useUpdateEffect } from 'ahooks';
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 enum Around {
   before,
   after,
@@ -18,27 +17,26 @@ export default function useFrequencyEffect(
   around: keyof typeof Around = 'after',
 ) {
   const handleFrequency = useRef(0);
-
-  useUpdateEffect(() => {
-    let unmount: any = () => void 0;
-    switch (around) {
-      case 'after':
-        if (handleFrequency?.current < frequency) {
-          unmount = effect();
-          handleFrequency.current++;
-        }
-        break;
-      case 'before':
-        if (handleFrequency?.current < frequency) {
-          handleFrequency.current++;
-        }
-        if (handleFrequency?.current === frequency) {
-          unmount = effect();
-        }
+  const isMounted = useRef(false);
+  useEffect(() => {
+    if (isMounted.current) {
+      switch (around) {
+        case 'after':
+          if (handleFrequency?.current < frequency) {
+            handleFrequency.current++;
+            return effect();
+          }
+          break;
+        case 'before':
+          if (handleFrequency?.current < frequency) {
+            handleFrequency.current++;
+          }
+          if (handleFrequency?.current === frequency) {
+            return effect();
+          }
+      };
+    } else {
+      isMounted.current = true;
     }
-    return () => {
-      unmount?.();
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, deps);
 }

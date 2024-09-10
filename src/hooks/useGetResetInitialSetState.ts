@@ -1,7 +1,6 @@
-import { Dispatch, SetStateAction, useCallback, useRef } from 'react';
+import { Dispatch, SetStateAction, useCallback, useRef, useState } from 'react';
 
 import useFrequencyEffect from './useFrequencyEffect';
-import { useGetState } from 'ahooks';
 type GetStateAction<S> = () => S;
 type ResetStateAction = () => void;
 
@@ -21,8 +20,11 @@ type State<S> = [
  * @returns {State}
  */
 export default function useGetResetInitialSetState<S>(initialState: S): State<S> {
-  const [state, setState, getState] = useGetState(initialState);
+  const [state, setState] = useState(initialState);
   const data = useRef<S>(initialState);
+
+  const getState = () => data.current;
+
   const restState = useCallback(() => {
     setState(initialState);
   }, []);
