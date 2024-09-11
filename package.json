@@ -1,7 +1,7 @@
 {
-  "name": "ask_hooks",
+  "name": "ask-hooks",
   "private": false,
-  "version": "1.1.4",
+  "version": "1.0.0",
   "type": "module",
   "main": "./dist/ask.cjs",
   "module": "./dist/ask.js",
