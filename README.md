@@ -63,7 +63,7 @@ export default Dialog;
 ```
 
 ```tsx
-  import { useWithResolvers } from 'ask_hooks'
+  import { useWithResolvers } from 'ask-hooks'
   import { useRef } from 'react';
   function App () {
     const list = [
