@@ -42,8 +42,11 @@ const Dialog = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => ({
     onOpen: () => {
       setOpen(true);
-      return promise;
-    }
+      return promise.then((resolve) => {
+        setOpen(false);
+        return resolve;
+      });
+    },
   }))
 
   return (

@@ -1,10 +1,4 @@
-import useWithResolvers from "./useWithResolvers";
-import useOnChangeValue from "./useOnChangeValue";
-import useFrequencyEffect from "./useFrequencyEffect";
-import useGetResetInitialSetState from "./useGetResetInitialSetState";
-export {
-  useWithResolvers,
-  useOnChangeValue,
-  useFrequencyEffect,
-  useGetResetInitialSetState
-}
+export { default as useOnChangeValue } from './useOnChangeValue';
+export { default as useWithResolvers } from './useWithResolvers';
+export { default as useGetResetInitialSetState } from './useGetResetInitialSetState';
+export { default as useFrequencyEffect } from './useFrequencyEffect'
